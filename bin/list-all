@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly script_dir
+plugin_dir="$(dirname "$script_dir")"
+readonly plugin_dir
+# shellcheck source=/dev/null
+source "${plugin_dir}/lib/utils.bash"
+
+tool_name="$(basename "$plugin_dir")"
+readonly tool_name
+tool_script="${plugin_dir}/lib/tools/${tool_name}.bash"
+readonly tool_script
+[ -f "$tool_script" ] || error_exit "Tool '${tool_name}' is not supported: ${tool_script}"
+# shellcheck source=/dev/null
+source "$tool_script"
+
+command -v list_all_versions >/dev/null 2>&1 ||
+  error_exit "Tool '${tool_name}' does not implement list_all_versions"
+
+list_all_versions

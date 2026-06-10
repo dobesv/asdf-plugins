@@ -26,7 +26,11 @@ for tool in "${!VERSION_CMD[@]}"; do
   fi
 
   latest="$(asdf latest "$tool")"
-  asdf shell "$tool" "$latest" 2>/dev/null || asdf local "$tool" "$latest"
+  # asdf honors ASDF_<TOOL>_VERSION for the current process; uppercase the
+  # tool name and replace non-alphanumerics with underscores.
+  tool_env="ASDF_${tool^^}_VERSION"
+  tool_env="${tool_env//[^A-Z0-9_]/_}"
+  export "${tool_env}=${latest}"
 
   flag="${VERSION_CMD[$tool]}"
   if "$tool" "$flag"; then

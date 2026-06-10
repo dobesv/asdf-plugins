@@ -22,7 +22,7 @@ for tool in "${!VERSION_CMD[@]}"; do
     continue
   fi
 
-  echo "  versions: $(asdf list-all "$tool" | tr '\n' ' ')"
+  echo "  versions: $(asdf list all "$tool" | tr '\n' ' ')"
 
   if ! asdf install "$tool" latest; then
     echo "  FAIL: install"

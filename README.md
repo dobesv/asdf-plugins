@@ -12,20 +12,18 @@ this same repo.
 
 ## Install
 
-Add a single tool:
+Add (or update) every supported tool with a single command:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dobesv/asdf-plugins/master/install-all.sh | bash
+```
+
+Or add a single tool:
 
 ```bash
 asdf plugin add harnx https://github.com/dobesv/asdf-plugins.git
 asdf install harnx latest
-asdf global harnx latest
-```
-
-Or add/update every supported tool at once:
-
-```bash
-git clone https://github.com/dobesv/asdf-plugins.git
-cd asdf-plugins
-./install-all.sh
+asdf set -u harnx latest   # asdf < 0.16: use `asdf global harnx latest`
 ```
 
 ## How it works

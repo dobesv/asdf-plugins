@@ -2,6 +2,11 @@
 # Install the latest version of each tool and run its version command.
 set -uo pipefail
 
+command -v asdf >/dev/null 2>&1 || {
+  echo "asdf is not installed. See https://asdf-vm.com" >&2
+  exit 1
+}
+
 # tool -> version command (run as `<binary> <flag>`)
 declare -A VERSION_CMD=(
   [harnx]="--version"

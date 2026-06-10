@@ -23,7 +23,7 @@ Or add a single tool:
 ```bash
 asdf plugin add harnx https://github.com/dobesv/asdf-plugins.git
 asdf install harnx latest
-asdf set -u harnx latest   # asdf < 0.16: use `asdf global harnx latest`
+asdf set -u harnx latest
 ```
 
 ## How it works

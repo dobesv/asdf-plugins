@@ -45,7 +45,10 @@ get_arch() {
 
 # Go-style platform string, e.g. linux_amd64.
 get_platform() {
-  echo "$(get_os)_$(get_arch)"
+  local os arch
+  os="$(get_os)"
+  arch="$(get_arch)"
+  echo "${os}_${arch}"
 }
 
 # Download a URL to a destination path.
@@ -73,7 +76,7 @@ install_binary() {
   [ -f "$src" ] || error_exit "${name}: binary not found at ${src}"
   mkdir -p "$(dirname "$dest")"
   cp "$src" "$dest" || error_exit "${name}: failed to copy binary"
-  chmod +x "$dest"
+  chmod +x "$dest" || error_exit "${name}: failed to chmod binary"
 }
 
 # Semantic version sort (rbenv/ruby-build trick). Reads stdin, writes stdout.
@@ -86,18 +89,19 @@ sort_versions() {
 # Fetch the raw releases JSON for a GitHub repo.
 github_releases() {
   local repo="$1"
-  curl_wrapper -fsSL "https://api.github.com/repos/${repo}/releases" ||
+  curl_wrapper -fsSL "https://api.github.com/repos/${repo}/releases?per_page=100" ||
     error_exit "failed to fetch releases for ${repo}"
 }
 
 # Print release tag_names, newline-separated. Optional grep filter as $2.
 list_github_versions() {
   local repo="$1" filter="${2:-}"
-  local tags
-  tags="$(github_releases "$repo" | grep -oE '"tag_name":[[:space:]]*"[^"]+"' | sed -E 's/.*"tag_name":[[:space:]]*"([^"]+)".*/\1/')"
+  local raw tags
+  raw="$(github_releases "$repo")" || return 1
+  tags="$(printf '%s' "$raw" | grep -oE '"tag_name":[[:space:]]*"[^"]+"' | sed -E 's/.*"tag_name":[[:space:]]*"([^"]+)".*/\1/')"
   if [ -n "$filter" ]; then
-    echo "$tags" | grep -E "$filter"
+    printf '%s\n' "$tags" | grep -E "$filter"
   else
-    echo "$tags"
+    printf '%s\n' "$tags"
   fi
 }

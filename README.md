@@ -23,9 +23,16 @@ curl -fsSL https://raw.githubusercontent.com/dobesv/asdf-plugins/master/install-
 Or add a single tool:
 
 ```bash
-asdf plugin add harnx https://github.com/dobesv/asdf-plugins.git
-asdf install harnx latest
-asdf set -u harnx latest
+asdf plugin add harnx  https://github.com/dobesv/asdf-plugins.git
+asdf plugin add luchta https://github.com/dobesv/asdf-plugins.git
+asdf plugin add rclone https://github.com/dobesv/asdf-plugins.git
+```
+
+Then install and pin any of them:
+
+```bash
+asdf install rclone latest
+asdf set -u rclone latest
 ```
 
 ## How it works

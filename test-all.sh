@@ -10,6 +10,8 @@ command -v asdf >/dev/null 2>&1 || {
 # tool -> version command (run as `<binary> <flag>`)
 declare -A VERSION_CMD=(
   [harnx]="--version"
+  [luchta]="--help"
+  [rclone]="--version"
 )
 
 pass=0

@@ -9,6 +9,8 @@ this same repo.
 | Tool | Source |
 |------|--------|
 | `harnx` | <https://github.com/dobesv/harnx/releases> |
+| `luchta` | <https://github.com/dobesv/luchta/releases> |
+| `rclone` | <https://github.com/rclone/rclone/releases> |
 
 ## Install
 

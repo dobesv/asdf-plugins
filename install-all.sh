@@ -5,6 +5,8 @@ set -euo pipefail
 readonly REPO_URL="https://github.com/dobesv/asdf-plugins.git"
 readonly TOOLS=(
   harnx
+  luchta
+  rclone
 )
 
 command -v asdf >/dev/null 2>&1 || {

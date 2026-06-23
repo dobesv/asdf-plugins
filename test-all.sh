@@ -11,6 +11,7 @@ command -v asdf >/dev/null 2>&1 || {
 declare -A VERSION_CMD=(
   [harnx]="--version"
   [luchta]="--help"
+  [luchta-tsc-worker]="--version"
   [rclone]="--version"
 )
 

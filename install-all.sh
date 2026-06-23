@@ -6,6 +6,7 @@ readonly REPO_URL="https://github.com/dobesv/asdf-plugins.git"
 readonly TOOLS=(
   harnx
   luchta
+  luchta-tsc-worker
   rclone
 )
 

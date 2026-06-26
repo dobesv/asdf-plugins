@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # luchta - https://github.com/dobesv/luchta
 # Release tags are formatted "luchta/v<version>"; assets are
-# "luchta-v<version>-<rust-target>.tar.gz" containing a single `luchta` binary.
+# "luchta-v<version>-<rust-target>.tar.gz" containing the `luchta` binary plus
+# its worker binaries (e.g. luchta-bash-worker, luchta-yarn-worker).
 
 readonly LUCHTA_REPO="dobesv/luchta"
 
@@ -52,5 +53,15 @@ download_tool() {
 # shellcheck disable=SC2034
 install_tool() {
   local install_type="$1" version="$2" download_path="$3" install_path="$4"
-  install_binary "${download_path}/luchta" "${install_path}/bin/luchta" "luchta"
+
+  # The tarball bundles `luchta` alongside its worker binaries
+  # (luchta-bash-worker, luchta-yarn-worker, ...). Install every binary that
+  # was extracted so new workers are picked up automatically.
+  local src found=0
+  for src in "${download_path}"/*; do
+    [ -f "$src" ] || continue
+    install_binary "$src" "${install_path}/bin/$(basename "$src")" "luchta"
+    found=1
+  done
+  [ "$found" -eq 1 ] || error_exit "luchta: no binaries found in ${download_path}"
 }

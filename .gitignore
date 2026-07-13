@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 .claude/
+.agent/
 .DS_Store
 test/
 *.tmp

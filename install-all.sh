@@ -8,6 +8,7 @@ readonly TOOLS=(
   luchta
   luchta-tsc-worker
   rclone
+  tsgolint
 )
 
 command -v asdf >/dev/null 2>&1 || {

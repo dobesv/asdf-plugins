@@ -13,6 +13,7 @@ declare -A VERSION_CMD=(
   [luchta]="--help"
   [luchta-tsc-worker]="--version"
   [rclone]="--version"
+  [tsgolint]="--help"
 )
 
 pass=0

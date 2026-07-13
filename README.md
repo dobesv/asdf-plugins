@@ -12,6 +12,7 @@ this same repo.
 | `luchta` | <https://github.com/dobesv/luchta/releases> |
 | `luchta-tsc-worker` | <https://github.com/dobesv/typescript-go/releases> |
 | `rclone` | <https://github.com/rclone/rclone/releases> |
+| `tsgolint` | <https://github.com/robinnagpal-newsela/oxlint-tsgolint/releases> |
 
 ## Install
 
@@ -27,6 +28,7 @@ Or add a single tool:
 asdf plugin add harnx             https://github.com/dobesv/asdf-plugins.git
 asdf plugin add luchta            https://github.com/dobesv/asdf-plugins.git
 asdf plugin add rclone            https://github.com/dobesv/asdf-plugins.git
+asdf plugin add tsgolint          https://github.com/dobesv/asdf-plugins.git
 ```
 
 Then install and pin any of them:
@@ -52,6 +54,13 @@ Linux and macOS, `amd64` and `arm64`.
 
 - `GITHUB_API_TOKEN` — optional; sent as `Authorization: token` when listing
   GitHub releases, to avoid API rate limits.
+
+## Notes
+
+- `tsgolint` — oxlint does **not** find tsgolint on `PATH`. After installing,
+  point oxlint's type-aware linting at the installed binary by exporting
+  `OXLINT_TSGOLINT_PATH="$(asdf which tsgolint)"` (add it to your shell profile
+  or repo lint script).
 
 ## Adding a tool
 

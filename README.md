@@ -26,7 +26,6 @@ Or add a single tool:
 ```bash
 asdf plugin add harnx             https://github.com/dobesv/asdf-plugins.git
 asdf plugin add luchta            https://github.com/dobesv/asdf-plugins.git
-asdf plugin add luchta-tsc-worker https://github.com/dobesv/asdf-plugins.git
 asdf plugin add rclone            https://github.com/dobesv/asdf-plugins.git
 ```
 
